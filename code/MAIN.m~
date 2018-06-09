@@ -1,7 +1,7 @@
 clc; clear; close all;
 %% Treball de disseny d'un compressor axial per a l'assignatura de sistemes
 %propulsios d'aeronaus.
-%Introduccio de dades:
+%Introducci� de dades:
 g=9.81; %m/s2
 TAUc=300000; %J/kg
 G=21.38; %kg/s
@@ -16,13 +16,13 @@ Cp=1004; %J/kgK
 lambda=0.7;
 sigmAl=(39/4)*10^6; %kg/m2
 rho=2800; %kg/m2
-%Inicialitzacio dels valor comuns de solidesa i coeficient de flux
+%Inicialitzaci� dels valor comuns de solidesa i coeficient de flux
 sigma=[0.4 0.6 0.8 1 1.2];
 flux=[0.4 0.5 0.6 0.7 0.8];
 N=size(sigma,2);
 for i=1:N %Per a les N sigma
     for j=1:N %Per als N coef de flux
-        %Calcul betas
+        %C�lcul betas
         betA(i,j)=atan(1/2*(1.55/(1+1.55*sigma(i))+1/flux(j)));
         betB(i,j)=atan(1/flux(j)-tan(betA(i,j)));
         betM(i,j)=atan(1/(2*flux(j)));
@@ -34,18 +34,17 @@ for i=1:N %Per a les N sigma
         CL(i,j)=root(2);
         CD(i,j)=0.021+0.02/2.5*sigma(i)+0.018*CL(i,j)^2;
         CLi(i,j)=2*sigma(i)*(tan(betA(i,j))-tan(betB(i,j)))*cos(betM(i,j));
-        %Rendiment per esglao
+        %Rendiment per esgla�
         ETAesg(i,j)=1-CD(i,j)/CLi(i,j)*(2*flux(j)+1/(2*flux(j)));
-        %Velocitat axial. Aquesta velocitat haura d'estar entre 150 i 180
+        %Velocitat axial. Aquesta velocitat haur� d'estar entre 150 i 180
         %m/s
         Vz(i,j)=sqrt((M^2*gamma*Rgas*Tat)/(1/(cos(betA(i,j)))^2+(M^2*gamma*Rgas)/(2*Cp*(cos(betB(i,j)))^2)));
-        %Velocitat tangencial. El valor maxim d'aquesta velocitat es 320
+        %Velocitat tangencial. El valor m�xim d'aquesta velocitat es 320
         %m/s
         U(i,j)=Vz(i,j)/flux(j);
         %Treball per esglao
         TAUesg(i,j)=U(i,j)*Vz(i,j)*(tan(betA(i,j))-tan(betB(i,j)));
         rire(i,j)=(U(i,j)^2-sigmAl*g/(2*lambda*rho))/(U(i,j)^2+sigmAl*g/(2*lambda*rho)); %OJO unidades
-        
         Wa(i,j)=Vz(i,j)/cos(betA(i,j));
         Va(i,j)=sqrt((Vz(i,j)*sin(betA(i,j))/cos(betA(i,j))-U(i,j))^2+Vz(i,j)^2);
         Ta(i,j)=Tat-Va(i,j)^2/(2*Cp);
@@ -123,7 +122,7 @@ ETA23(1) = 1 - n(2)*Cd(2)/CLi_n(2)*(2*FLUX(2)+1/(2*FLUX(2))); % 8 etapas
 ETA23(2) = 1 - n(3)*Cd(3)/CLi_n(3)*(2*FLUX(3)+1/(2*FLUX(3))); % 9 etapas
 ETA23(3) = 1 - n(4)*Cd(4)/CLi_n(4)*(2*FLUX(4)+1/(2*FLUX(4))); % 10 etapas
 
-%% Numero d'aleps en primer esglao
+%% Numero de alabes en primer escalon
 
 %% Print surfaces:
 % figure;
