@@ -59,7 +59,7 @@ for i=1:N %Per a les N sigma
     end
 end
 
-%% Selecci� de par�metres
+%% Seleccio de parametres
 n = [ 7 8 9 10];
 TAUstage = TAUc./n;
 for ii = 1 : 4
@@ -72,9 +72,9 @@ plot(flux, TAUesg');
 plot(flux, TAUstagePlot);
 hold off
 
-% Seleccionar flux de tall amb el necessari
+% Seleccionar flux de tall amb el necessari (mirant el grafic anterior)
 FLUX(1) = 0;
-FLUX(2) = interpolarPunt( 3.75e4, 3.788e4, 3.701e4, 0.6, 0.5 ); %[X, Xa, Xb, Yb, Ya]
+FLUX(2) = interpolarPunt( 3.75e4, 3.788e4, 3.701e4, 0.6, 0.5 ); %[Y, Xa, Xb, Yb, Ya]
 FLUX(3) = interpolarPunt( 3.333e4, 3.348e4, 3.224e4, 0.7, 0.6 );
 FLUX(4) = interpolarPunt( 3e4, 3.051e4, 2.939e4, 0.7, 0.6 );
 FLUX(5) = 0;
@@ -89,6 +89,7 @@ plot(flux, ETAesg');
 plot(FLUXplot(:,2:end-1), linspace(0.88,0.91,N) );
 hold off
 
+% (mirant el grafic anterior)
 ETA(1) = 0;
 ETA(2) = interpolarPunt( FLUX(2), 0.5, 0.6, 0.9026, 0.9003 );
 ETA(3) = interpolarPunt( FLUX(3), 0.6, 0.7, 0.9022, 0.9041 );
@@ -119,11 +120,48 @@ CLi_n(2) = interpolarPunt( FLUX(2), 0.5, 0.6, 0.7404, 0.6815 );
 CLi_n(3) = interpolarPunt( FLUX(3), 0.6, 0.7, 0.9009, 0.8505 );
 CLi_n(4) = interpolarPunt( FLUX(4), 0.6, 0.7, 0.9892, 0.9339 );
 
+%interpolar CL
+figure()
+hold on
+plot(flux, CL');
+plot(FLUXplot(:,2:end-1), linspace(0.4,1.1,N) );
+hold off
+
+CL_n(1) = 0;
+CL_n(2) = interpolarPunt( FLUX(2), 0.5, 0.6, 0.7322, 0.6732 );
+CL_n(3) = interpolarPunt( FLUX(3), 0.6, 0.7, 0.8906, 0.8398 );
+CL_n(4) = interpolarPunt( FLUX(4), 0.6, 0.7, 0.9769, 0.9211 );
+
 ETA23(1) = 1 - n(2)*Cd(2)/CLi_n(2)*(2*FLUX(2)+1/(2*FLUX(2))); % 8 etapas
 ETA23(2) = 1 - n(3)*Cd(3)/CLi_n(3)*(2*FLUX(3)+1/(2*FLUX(3))); % 9 etapas
 ETA23(3) = 1 - n(4)*Cd(4)/CLi_n(4)*(2*FLUX(4)+1/(2*FLUX(4))); % 10 etapas
 
+
 %% Numero d'aleps en primer esglao
+
+% -------------
+sigma_e(1) = round((Cd(2)-0.021-0.018*CL_n(2)^2)*2.5/0.02,1);
+index_i = find(sigma == sigma_e(1));
+index_j = find(flux == round(FLUX(2),1));
+h_e(1) = h(index_i,index_j);
+r_e(1) = rm(index_i,index_j);
+N(1) = alabes(h_e(1),r_e(1),sigma_e(1));
+% -------------
+sigma_e(2) = round((Cd(3)-0.021-0.018*CL_n(3)^2)*2.5/0.02,1);
+index_i = find(sigma == sigma_e(2));
+index_j = find(flux == round(FLUX(3),1));
+h_e(2) = h(index_i,index_j);
+r_e(2) = rm(index_i,index_j);
+N(2) = alabes(h_e(2),r_e(2),sigma_e(2));
+% -------------
+sigma_e(3) = round((Cd(4)-0.021-0.018*CL_n(4)^2)*2.5/0.02,1);
+index_i = find(sigma == sigma_e(3));
+index_j = find(flux == round(FLUX(4),1));
+h_e(3) = h(index_i,index_j);
+r_e(3) = rm(index_i,index_j);
+N(3) = alabes(h_e(3),r_e(3),sigma_e(3));
+
+N_blades = fix(N);
 
 %% Print surfaces:
 % figure;
