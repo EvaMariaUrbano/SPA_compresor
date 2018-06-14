@@ -24,7 +24,14 @@
 %pict insert
 \usepackage{graphicx}
 \usepackage[export]{adjustbox}
+\setlength{\parindent}{0cm} %no indent
+\usepackage{booktabs}
+\usepackage{longtable}
 %
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \everymath{\displaystyle}
 \author{Eva María Urbano González, Pol Fontanes, Boyan Naydenov}

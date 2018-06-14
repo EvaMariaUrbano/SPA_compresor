@@ -1,4 +1,5 @@
 clc; clear; close all;
+addpath(genpath('./plots'))
 %% Treball de disseny d'un compressor axial per a l'assignatura de sistemes
 %propulsios d'aeronaus.
 %Introduccio de dades:
@@ -60,6 +61,7 @@ for i=1:N %Per a les N sigma
 end
 
 %% Seleccio de parametres
+%print -depsc2 myplot.eps
 n = [ 7 8 9 10];
 TAUstage = TAUc./n;
 for ii = 1 : 4

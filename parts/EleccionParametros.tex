@@ -1,1 +1,22 @@
 \section{Elecció de paràmetres $S/C$ i $\Psi$}
+Partim del coneixement que el treball específic que ha de subministrar el nostre motor és $\tau_{23}$.\\
+
+A partir de motors similars, veiem que les solucions per compressors estan entre 7, 8, 9 i 10 graons. Per tant, per cada un dels 4 casos es trobarà el valor que tindríem de solidesa i coeficient de flux del gràfic $\tau_{esc}$. S'escollirà el cas que tingui un major rendiment per graó de tots els possibles. \\
+
+S'han interpolat els valors linealment a partir de dos punts d'informació, $(x_a,y_a)$ i $(x_b,y_b)$, per obtenir un tercer punt interpolat $(x,y)$ segons,
+\begin{equation}
+	y = y_a + (x-x_a)\frac{(y_b-y_a)}{(x_b-x_a)}
+\end{equation}
+
+Aquesta aproximació lineal, és vàlida ja que es treballa en un interval petit entre les dues dades conegudes.
+
+\begin{longtable}[H]{C{1.5cm} C{1.5cm} C{1.5cm}}
+	\toprule[2pt]
+	\textbf{N} &  \textbf{$S/C$}  & \textbf{$\Psi$}\\ \bottomrule[2pt]
+	7 & -- &\\ \midrule
+	8 & -- &\\ \midrule
+	9 & -- &\\ \midrule
+	10 & -- &
+	\\ \bottomrule[2pt]
+	\caption{Paràmetres escollits}
+\end{longtable}
