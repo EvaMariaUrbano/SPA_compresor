@@ -1,5 +1,4 @@
 clc; clear; close all;
-addpath(genpath('./plots'))
 %% Treball de disseny d'un compressor axial per a l'assignatura de sistemes
 %propulsios d'aeronaus.
 %Introduccio de dades:
@@ -48,7 +47,7 @@ for i=1:N %Per a les N sigma
         rire(i,j)=(U(i,j)^2-sigmAl*g/(2*lambda*rho))/(U(i,j)^2+sigmAl*g/(2*lambda*rho)); %OJO unidades
         
         Wa(i,j)=Vz(i,j)/cos(betA(i,j));
-        Wb(i,j)=Vz(i,j)/cos(betb(i,j));
+        Wb(i,j)=Vz(i,j)/cos(betB(i,j));
         Wm(i,j)=(Wa(i,j)+Wb(i,j))/2;
         
         Va(i,j)=sqrt((Vz(i,j)*sin(betA(i,j))/cos(betA(i,j))-U(i,j))^2+Vz(i,j)^2);
@@ -73,12 +72,6 @@ for ii = 1 : 4
     TAUstagePlot(:,ii) = TAUstage(ii)*ones(N,1);
 end
 
-figure();
-hold on
-plot(flux, TAUesg'); 
-plot(flux, TAUstagePlot);
-hold off
-
 % Seleccionar flux de tall amb el necessari (mirant el grafic anterior)
 FLUX(1) = 0;
 FLUX(2) = interpolarPunt( 3.75e4, 3.788e4, 3.701e4, 0.6, 0.5 ); %[Y, Xa, Xb, Yb, Ya]
@@ -90,12 +83,6 @@ FLUX(5) = 0;
 for ii = 1 : 5
     FLUXplot(:,ii) = FLUX(ii)*ones(N,1);
 end
-figure()
-hold on
-plot(flux, ETAesg');
-plot(FLUXplot(:,2:end-1), linspace(0.88,0.91,N) );
-hold off
-
 % (mirant el grafic anterior)
 ETA(1) = 0;
 ETA(2) = interpolarPunt( FLUX(2), 0.5, 0.6, 0.9026, 0.9003 );
@@ -103,36 +90,15 @@ ETA(3) = interpolarPunt( FLUX(3), 0.6, 0.7, 0.9022, 0.9041 );
 ETA(4) = interpolarPunt( FLUX(4), 0.6, 0.7, 0.9013, 0.9036 );
 ETA(5) = 0;
 
-%Rendiment total del compressor
-    %interpolar CD
-figure()
-hold on
-plot(flux, CD');
-plot(FLUXplot(:,2:end-1), linspace(0.025,0.055,N) );
-hold off
 Cd(1) = 0;
 Cd(2) = interpolarPunt( FLUX(2), 0.5, 0.6, 0.03545, 0.03396 );
 Cd(3) = interpolarPunt( FLUX(3), 0.6, 0.7, 0.04168, 0.0401 );
 Cd(4) = interpolarPunt( FLUX(4), 0.6, 0.7, 0.04618, 0.04427 );
 
-%interpolar CLi
-figure()
-hold on
-plot(flux, CLi');
-plot(FLUXplot(:,2:end-1), linspace(0.4,1,N) );
-hold off
-
 CLi_n(1) = 0;
 CLi_n(2) = interpolarPunt( FLUX(2), 0.5, 0.6, 0.7404, 0.6815 );
 CLi_n(3) = interpolarPunt( FLUX(3), 0.6, 0.7, 0.9009, 0.8505 );
 CLi_n(4) = interpolarPunt( FLUX(4), 0.6, 0.7, 0.9892, 0.9339 );
-
-%interpolar CL
-figure()
-hold on
-plot(flux, CL');
-plot(FLUXplot(:,2:end-1), linspace(0.4,1.1,N) );
-hold off
 
 CL_n(1) = 0;
 CL_n(2) = interpolarPunt( FLUX(2), 0.5, 0.6, 0.7322, 0.6732 );
@@ -188,7 +154,6 @@ T_c = Tt_c - Va(index_i,index_j)^2/(2*Cp);
 rho_c = P_c/(T_c*Rgas);
 h_c = G/(rho_c*Vz(index_i,index_j)*2*pi*rm(index_i,index_j));
 
-
 h_r = (h_a+h_b)/2;
 h_e = (h_b+h_c)/2;
 
@@ -213,35 +178,3 @@ r_e(3) = rm(index_i,index_j);
 N(3) = alabes(h_e(3),r_e(3),sigma_e(3));
 
 N_blades = fix(N);
-
-%% Print surfaces:
-% figure;
-% surf(sigma,flux,betA);
-% figure;
-% surf(sigma,flux,betB);
-% figure;
-% surf(sigma,flux,CL);
-% figure;
-% surf(sigma,flux,CD);
-% figure;
-% surf(sigma,flux,ETAesg);
-% figure;
-% surf(sigma,flux,Vz);
-% figure;
-% surf(sigma,flux,U);
-% figure;
-% surf(sigma,flux,TAUesg);
-% figure;
-% surf(sigma,flux,rire);
-% figure;
-% surf(sigma,flux,re);
-% figure;
-% surf(sigma,flux,ri);
-% figure;
-% surf(sigma,flux,rm);
-% figure;
-% surf(sigma,flux,h);
-% figure;
-% surf(sigma,flux,RPM);
-
-
