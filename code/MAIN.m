@@ -107,7 +107,21 @@ hold on
 plot(flux, ETAesg');
 plot(FLUXplot(:,2:end-1), linspace(0.88,0.91,N) );
 hold off
+savefig('./figures/FLUXs.fig')
+close
+    %Dibuixar bonic
+plt = Plot('./figures/FLUXs.fig');
+plt.XLim(2) = plt.XLim(2) + .15;
+plt.BoxDim = [6 4];
+plt.XLabel = 'Flux, \Psi';
+plt.YLabel = 'Rendiment, \eta_{esg}';
+plt.LineWidth(:) = 2;
+plt.LineStyle(6:9) = {':',':',':',':'}; %:,-,--,-.
+plt.Legend = {'S/C = 0.4','S/C = 0.6','S/C = 0.8','S/C = 1','S/C = 1.2', ...
+   '\Psi_{N8}','\Psi_{N9}','\Psi_{N10}',};
+plt.Title = '\eta en funció de S/C i \Psi';
 
+print -depsc2 figures/parametres/FLUXs.eps %guardadr foto per l'informe
 % (mirant el grafic anterior)
 ETA(1) = 0;
 ETA(2) = interpolarPunt( FLUX(2), 0.5, 0.6, 0.9026, 0.9003 );
