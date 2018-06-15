@@ -271,6 +271,7 @@ N_blades = fix(N);
 %% Print surfaces:
 figure;
 surf(sigma,flux,betA);
+view(40,22)
 savefig('./figures/betA.fig')
 close
 % plt = Plot('figure', 'true');
@@ -288,6 +289,7 @@ print -depsc2 figures/parametres/betA.eps %guardar foto per l'informe
 %---------------
 figure;
 surf(sigma,flux,betB);
+view(-156,45)
 savefig('./figures/betB.fig')
 close
 % plt = Plot('figure', 'true');
@@ -377,6 +379,7 @@ print -depsc2 figures/parametres/Vz.eps %guardar foto per l'informe
 
 figure;
 surf(sigma,flux,U);
+view(-33,33)
 savefig('./figures/U.fig')
 close
 % plt = Plot('figure', 'true');
@@ -394,6 +397,7 @@ print -depsc2 figures/parametres/U.eps %guardar foto per l'informe
 %---------------------------------------
 figure;
 surf(sigma,flux,TAUesg);
+view(31,30)
 savefig('./figures/TAUesg.fig')
 close
 % plt = Plot('figure', 'true');
@@ -412,6 +416,7 @@ print -depsc2 figures/parametres/TAUesg.eps %guardar foto per l'informe
 
 figure;
 surf(sigma,flux,rire);
+view(146,31)
 savefig('./figures/rire.fig')
 close
 % plt = Plot('figure', 'true');
@@ -430,6 +435,7 @@ print -depsc2 figures/parametres/rire.eps %guardar foto per l'informe
 
 figure;
 surf(sigma,flux,re);
+view(30.74,34.64)
 savefig('./figures/re.fig')
 close
 % plt = Plot('figure', 'true');
@@ -448,6 +454,7 @@ print -depsc2 figures/parametres/re.eps %guardar foto per l'informe
 
 figure;
 surf(sigma,flux,ri);
+view(-31,32)
 savefig('./figures/ri.fig')
 close
 % plt = Plot('figure', 'true');
@@ -467,6 +474,7 @@ print -depsc2 figures/parametres/ri.eps %guardar foto per l'informe
 
 figure;
 surf(sigma,flux,rm);
+view(-25.9,46.8)
 savefig('./figures/rm.fig')
 close
 % plt = Plot('figure', 'true');
