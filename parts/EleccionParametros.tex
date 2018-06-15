@@ -1,11 +1,41 @@
 \section{Elecció de paràmetres $S/C$ i $\Psi$}
-Partim del coneixement que el treball específic que ha de subministrar el nostre motor és $\tau_{23}$.\\
+Es parteix del coneixement que el treball específic que ha de subministrar el nostre motor és $\tau_{23} = 300000 J/kg$.\\
 
-A partir de motors similars, veiem que les solucions per compressors estan entre 7, 8, 9 i 10 graons. Per tant, per cada un dels 4 casos es trobarà el valor que tindríem de solidesa i coeficient de flux del gràfic $\tau_{esc}$. S'escollirà el cas que tingui un major rendiment per graó de tots els possibles. \\
+A partir de motors similars, s'aprecia que les solucions per compressors estan entre 7, 8, 9 i 10 graons. Per tant, per cada un dels 4 casos es pot trobar el valor que es tindria de solidesa i el coeficient de flux del gràfic de $\tau_{esc}$. S'escollirà el cas que tingui un major rendiment per escaló de tots els possibles. \\
 
-S'han interpolat els valors linealment a partir de dos punts d'informació, $(x_a,y_a)$ i $(x_b,y_b)$, per obtenir un tercer punt interpolat $(x,y)$ segons,
+Primer de tot es necessari saber el treball específic que ha de realitzar cada etapa de compressió segons el numero total d'etapes. Es calcula com $\tau_{esc}=\tau_{23}/N$ on $N$ és el número d'etapes de compressió.
+
+\begin{longtable}[H]{C{1.5cm} C{2.5cm}}
+	\toprule[2pt]
+	\textbf{N} &  \textbf{$\tau_{esc} \quad [J/kg]$} \\ \bottomrule[2pt]
+	7 & $4.29\mathrm{x}10^4$\\ \midrule
+	8 & $3.75\mathrm{x}10^4$\\ \midrule
+	9 & $3.33\mathrm{x}10^4$\\ \midrule
+	10&$3.00\mathrm{x}10^4$
+	\\ \bottomrule[2pt]
+	\caption{Treball específic segons etapes de compressió}
+	\label{valorsI}
+\end{longtable}
+
+Després, es superposen (Figura \ref{TAUS}) els resultats obtinguts per cada escaló segons nombre d'etapes amb els valors de $\tau$ inicialment calculats per diferents $S/C$ i $\Psi$.\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./code/figures/parametres/TAUSesg}
+	\caption{Valors de $\tau$ en funció de $S/C$ i $\Psi$.}
+	\label{TAUS}
+\end{figure}
+
+Ara, es busca l'intersecció dels treballs específics calculats per a cada etapa amb els treballs d'escaló calculats per per diferents valors de $S/C$ i $\Psi$.
+
+El resultat, permet veure quin paràmetre $S/C$ es el millor per a cada punt d'intersecció, però per saber el flux ($\Psi$) caldrà interpolar entre els dos punts més propers a l'intersecció.\\
+
+S'han interpolat els valors del flux ($\Psi$) linealment a partir de dos punts d'informació propers a l'intersecció, $(x_a,y_a)$ i $(x_b,y_b)$, per obtenir un tercer punt interpolat $(x,y)$ segons,
 \begin{equation}
 	y = y_a + (x-x_a)\frac{(y_b-y_a)}{(x_b-x_a)}
+\end{equation}
+per aquest cas particular,
+\begin{equation}
+\Psi_N = \Psi_a + (\tau_{N}-\tau_a)\frac{(\Psi_b-\Psi_a)}{(\tau_b-\tau_a)}
 \end{equation}
 
 Aquesta aproximació lineal, és vàlida ja que es treballa en un interval petit entre les dues dades conegudes.
@@ -13,10 +43,11 @@ Aquesta aproximació lineal, és vàlida ja que es treballa en un interval petit
 \begin{longtable}[H]{C{1.5cm} C{1.5cm} C{1.5cm}}
 	\toprule[2pt]
 	\textbf{N} &  \textbf{$S/C$}  & \textbf{$\Psi$}\\ \bottomrule[2pt]
-	7 & -- &\\ \midrule
-	8 & -- &\\ \midrule
-	9 & -- &\\ \midrule
-	10 & -- &
+	7 & -- & --\\ \midrule
+	8 & 0.6 &0.5437\\ \midrule
+	9 & 0.8 &0.6121\\ \midrule
+	10 & 1 &0.6455
 	\\ \bottomrule[2pt]
 	\caption{Paràmetres escollits}
 \end{longtable}
+
