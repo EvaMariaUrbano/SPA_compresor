@@ -418,7 +418,7 @@ plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
 plt.ZLabel = 'r_{e}';
 plt.LineWidth(:) = 2;
-plt.Title = 'r_{e} en funció de S/C i \Psi';
+plt.Title = '\r_{e} en funció de S/C i \Psi';
 
 print -depsc2 figures/parametres/re.eps %guardar foto per l'informe
 %---------------------------------------
@@ -461,40 +461,26 @@ print -depsc2 figures/parametres/rm.eps %guardar foto per l'informe
 %---------------------------------------
 
 figure;
-surf(sigma,flux,h);
-savefig('./figures/h.fig')
+surf(sigma,flux,ETAesg);
+savefig('./figures/ETAesg.fig')
 close
 % plt = Plot('figure', 'true');
     %Dibuixar bonic
-plt = Plot('./figures/h.fig', 'true');
+plt = Plot('./figures/ETAesg.fig', 'true');
 % plt.XLim(2) = plt.XLim(2) + .15;
 plt.BoxDim = [6 4];
 plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
-plt.ZLabel = 'h';
+plt.ZLabel = '\eta_{esglaó}';
 plt.LineWidth(:) = 2;
-plt.Title = 'h en funció de S/C i \Psi';
+plt.Title = '\eta_{esglaó} en funció de S/C i \Psi';
 
-print -depsc2 figures/parametres/h.eps %guardar foto per l'informe
+print -depsc2 figures/parametres/ETAesg.eps %guardar foto per l'informe
 %---------------------------------------
 
-figure;
-surf(sigma,flux,RPM);
-savefig('./figures/RPM.fig')
-close
-% plt = Plot('figure', 'true');
-    %Dibuixar bonic
-plt = Plot('./figures/RPM.fig', 'true');
-% plt.XLim(2) = plt.XLim(2) + .15;
-plt.BoxDim = [6 4];
-plt.XLabel = '1/Solidesa, S/C';
-plt.YLabel = 'Flux, \Psi';
-plt.ZLabel = 'N(rpm)';
-plt.LineWidth(:) = 2;
-plt.Title = 'N en funció de S/C i \Psi';
-
-print -depsc2 figures/parametres/RPM.eps %guardar foto per l'informe
-%---------------------------------------
-
+% figure;
+% surf(sigma,flux,h);
+% figure;
+% surf(sigma,flux,RPM);
 
 
