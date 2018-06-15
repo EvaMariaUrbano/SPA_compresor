@@ -64,7 +64,29 @@ for i=1:N %Per a les N sigma
         RPM(i,j)=60*U(i,j)/(2*pi*rm(i,j));        
     end
 end
-
+%export values
+matrix2latex(betA, 'matrix2Latex/betA.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(betB, 'matrix2Latex/betB.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(betM, 'matrix2Latex/betM.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(CL, 'matrix2Latex/CL.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(CD, 'matrix2Latex/CD.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(CLi, 'matrix2Latex/CLi.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(Vz, 'matrix2Latex/Vz.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(U, 'matrix2Latex/U.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(TAUesg, 'matrix2Latex/TAUesg.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(rire, 'matrix2Latex/rire.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(Wa, 'matrix2Latex/Wa.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(Wb, 'matrix2Latex/Wb.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(Wm, 'matrix2Latex/Wm.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(Va, 'matrix2Latex/Va.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(Vb, 'matrix2Latex/Vb.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(Ta, 'matrix2Latex/Ta.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(Pa, 'matrix2Latex/Pa.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(re, 'matrix2Latex/re.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(ri, 'matrix2Latex/ri.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(h, 'matrix2Latex/h.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(rm, 'matrix2Latex/rm.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
+matrix2latex(RPM, 'matrix2Latex/RPM.tex', 'alignment', 'c', 'format', '%-6.2f', 'size', 'large')
 %% Seleccio de parametres
 %print -depsc2 myplot.eps
 n = [ 7 8 9 10];
