@@ -174,7 +174,8 @@ ETA23(1) = 1 - n(2)*Cd(2)/CLi_n(2)*(2*FLUX(2)+1/(2*FLUX(2))); % 8 etapas
 ETA23(2) = 1 - n(3)*Cd(3)/CLi_n(3)*(2*FLUX(3)+1/(2*FLUX(3))); % 9 etapas
 ETA23(3) = 1 - n(4)*Cd(4)/CLi_n(4)*(2*FLUX(4)+1/(2*FLUX(4))); % 10 etapas
 
-
+VZ = interpolarPunt( FLUX(2), flux(2), flux(3), Vz(2,2), Vz(2,3) ); %[X, Xa, Xb, Yb, Ya]
+Uval = interpolarPunt( FLUX(2), flux(2), flux(3), U(2,2), U(2,3) ); %[X, Xa, Xb, Yb, Ya]
 %% Numero d'aleps en primer esglao i longitud total
 % ------------- 8 etapas
 et = 8;
