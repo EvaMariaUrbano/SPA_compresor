@@ -85,7 +85,7 @@ plt.YLabel = 'Treball escaló, \tau';
 plt.LineWidth(:) = 2;
 plt.LineStyle(6:9) = {':',':',':',':'}; %:,-,--,-.
 plt.Legend = {'S/C = 0.4','S/C = 0.6','S/C = 0.8','S/C = 1','S/C = 1.2', ...
-    '\tau_{N7}','\tau_{N8}','\tau_{N9}','\tau_{N10}',};
+    '\tau_{N7}','n = 8','n = 9','n = 10'};
 %plt.Legend(6:9) = {'n = 7','n = 8','n = 9','n = 10'};
 plt.Title = '\tau en funció de S/C i \Psi';
 
