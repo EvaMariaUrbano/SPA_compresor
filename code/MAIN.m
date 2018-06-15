@@ -48,7 +48,12 @@ for i=1:N %Per a les N sigma
         rire(i,j)=(U(i,j)^2-sigmAl*g/(2*lambda*rho))/(U(i,j)^2+sigmAl*g/(2*lambda*rho)); %OJO unidades
         
         Wa(i,j)=Vz(i,j)/cos(betA(i,j));
+        Wb(i,j)=Vz(i,j)/cos(betB(i,j));
+        Wm(i,j)=(Wa(i,j)+Wb(i,j))/2;
+        
         Va(i,j)=sqrt((Vz(i,j)*sin(betA(i,j))/cos(betA(i,j))-U(i,j))^2+Vz(i,j)^2);
+        Vb(i,j)=sqrt((Vz(i,j)*sin(betB(i,j))/cos(betB(i,j))-U(i,j))^2+Vz(i,j)^2); %REVISAR
+        
         Ta(i,j)=Tat-Va(i,j)^2/(2*Cp);
         Pa(i,j)=Pat/(1+Wa(i,j)^2/(2*Rgas*Ta(i,j)));
         rhoa(i,j)=Pa(i,j)/(Rgas*Ta(i,j));
@@ -170,23 +175,67 @@ ETA23(2) = 1 - n(3)*Cd(3)/CLi_n(3)*(2*FLUX(3)+1/(2*FLUX(3))); % 9 etapas
 ETA23(3) = 1 - n(4)*Cd(4)/CLi_n(4)*(2*FLUX(4)+1/(2*FLUX(4))); % 10 etapas
 
 
-%% Numero d'aleps en primer esglao
-
-% -------------
+%% Numero d'aleps en primer esglao i longitud total
+% ------------- 8 etapas
+et = 8;
 sigma_e(1) = round((Cd(2)-0.021-0.018*CL_n(2)^2)*2.5/0.02,1);
 index_i = find(sigma == sigma_e(1));
 index_j = find(flux == round(FLUX(2),1));
 h_e(1) = h(index_i,index_j);
 r_e(1) = rm(index_i,index_j);
 N(1) = alabes(h_e(1),r_e(1),sigma_e(1));
-% -------------
+
+
+% per longitud. Com es una maquina periodica flux i rm son cte.
+% deltaPt = Cd(2)*0.5*rho*Wm(index_i,index_j)^2/(sigma_e(1)*cos(betM(index_i,index_j)));
+% C_h = 1/2.5;
+% C_h = linspace(C_h,1.25*C_h,et);
+% L = 0;
+% for i=1:et
+%   
+% if i == 1
+%     Pt_in = Pat;
+%     Tt_in = Tat;
+% end
+%     
+% Pt_a = Pt_in + (i-1)*deltaPt;
+% P_a = Pt_a - 0.5*rho*Va(index_i,index_j)^2;
+% Tt_a = Tt_in + (i-1)*TAUc/(et*Cp);
+% T_a = Tt_a - Va(index_i,index_j)^2/(2*Cp);
+% rho_a = P_a/(T_a*Rgas);
+% h_a = G/(rho_a*Vz(index_i,index_j)*2*pi*rm(index_i,index_j));
+% 
+% Pt_b = Pt_a + deltaPt;
+% P_b = Pt_b - 0.5*rho*Vb(index_i,index_j)^2;
+% Tt_b = Tt_in + (i)*TAUc/(et*Cp);
+% T_b = Tt_b - Vb(index_i,index_j)^2/(2*Cp);
+% rho_b = P_b/(T_b*Rgas);
+% h_b = G/(rho_b*Vz(index_i,index_j)*2*pi*rm(index_i,index_j));
+% 
+% Pt_c = Pt_b + deltaPt;
+% P_c = Pt_c - 0.5*rho*Va(index_i,index_j)^2;
+% Tt_c = Tt_in + (i+1)*TAUc/(et*Cp);
+% T_c = Tt_c - Va(index_i,index_j)^2/(2*Cp);
+% rho_c = P_c/(T_c*Rgas);
+% h_c = G/(rho_c*Vz(index_i,index_j)*2*pi*rm(index_i,index_j));
+% 
+% 
+% h_r = (h_a+h_b)/2;
+% h_e = (h_b+h_c)/2;
+% 
+% L_stage = longitud(C_h(i),h_r,h_e,et,betM(index_i,index_j));
+% L = L + L_stage;
+% end
+
+
+% ------------- 9 etapas
 sigma_e(2) = round((Cd(3)-0.021-0.018*CL_n(3)^2)*2.5/0.02,1);
 index_i = find(sigma == sigma_e(2));
 index_j = find(flux == round(FLUX(3),1));
 h_e(2) = h(index_i,index_j);
 r_e(2) = rm(index_i,index_j);
 N(2) = alabes(h_e(2),r_e(2),sigma_e(2));
-% -------------
+% ------------- 10 etapas
 sigma_e(3) = round((Cd(4)-0.021-0.018*CL_n(4)^2)*2.5/0.02,1);
 index_i = find(sigma == sigma_e(3));
 index_j = find(flux == round(FLUX(4),1));
