@@ -262,8 +262,24 @@ plt.LineWidth(:) = 2;
 plt.Title = '\beta_{a} en funció de S/C i \Psi';
 
 print -depsc2 figures/parametres/betA.eps %guardadr foto per l'informe
-% figure;
-% surf(sigma,flux,betB);
+%---------------
+figure;
+surf(sigma,flux,betB);
+savefig('./figures/betB.fig')
+close
+% plt = Plot('figure', 'true');
+    %Dibuixar bonic
+plt = Plot('./figures/betB.fig', 'true');
+% plt.XLim(2) = plt.XLim(2) + .15;
+plt.BoxDim = [6 4];
+plt.XLabel = 'Solidesa, S/C';
+plt.YLabel = 'Flux, \Psi';
+plt.ZLabel = '\beta_{b}';
+plt.LineWidth(:) = 2;
+plt.Title = '\beta_{b} en funció de S/C i \Psi';
+
+print -depsc2 figures/parametres/betB.eps %guardadr foto per l'informe
+%---------------------------------------
 % figure;
 % surf(sigma,flux,CL);
 % figure;
