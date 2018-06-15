@@ -136,22 +136,22 @@ ETA(5) = 0;
 
 %Rendiment total del compressor
     %interpolar CD
-figure()
-hold on
-plot(flux, CD');
-plot(FLUXplot(:,2:end-1), linspace(0.025,0.055,N) );
-hold off
+% figure()
+% hold on
+% plot(flux, CD');
+% plot(FLUXplot(:,2:end-1), linspace(0.025,0.055,N) );
+% hold off
 Cd(1) = 0;
 Cd(2) = interpolarPunt( FLUX(2), 0.5, 0.6, 0.03545, 0.03396 );
 Cd(3) = interpolarPunt( FLUX(3), 0.6, 0.7, 0.04168, 0.0401 );
 Cd(4) = interpolarPunt( FLUX(4), 0.6, 0.7, 0.04618, 0.04427 );
 
 %interpolar CLi
-figure()
-hold on
-plot(flux, CLi');
-plot(FLUXplot(:,2:end-1), linspace(0.4,1,N) );
-hold off
+% figure()
+% hold on
+% plot(flux, CLi');
+% plot(FLUXplot(:,2:end-1), linspace(0.4,1,N) );
+% hold off
 
 CLi_n(1) = 0;
 CLi_n(2) = interpolarPunt( FLUX(2), 0.5, 0.6, 0.7404, 0.6815 );
@@ -159,11 +159,11 @@ CLi_n(3) = interpolarPunt( FLUX(3), 0.6, 0.7, 0.9009, 0.8505 );
 CLi_n(4) = interpolarPunt( FLUX(4), 0.6, 0.7, 0.9892, 0.9339 );
 
 %interpolar CL
-figure()
-hold on
-plot(flux, CL');
-plot(FLUXplot(:,2:end-1), linspace(0.4,1.1,N) );
-hold off
+% figure()
+% hold on
+% plot(flux, CL');
+% plot(FLUXplot(:,2:end-1), linspace(0.4,1.1,N) );
+% hold off
 
 CL_n(1) = 0;
 CL_n(2) = interpolarPunt( FLUX(2), 0.5, 0.6, 0.7322, 0.6732 );
@@ -246,8 +246,22 @@ N(3) = alabes(h_e(3),r_e(3),sigma_e(3));
 N_blades = fix(N);
 
 %% Print surfaces:
-% figure;
-% surf(sigma,flux,betA);
+figure;
+surf(sigma,flux,betA);
+savefig('./figures/betA.fig')
+close
+% plt = Plot('figure', 'true');
+    %Dibuixar bonic
+plt = Plot('./figures/betA.fig', 'true');
+% plt.XLim(2) = plt.XLim(2) + .15;
+plt.BoxDim = [6 4];
+plt.XLabel = 'Solidesa, S/C';
+plt.YLabel = 'Flux, \Psi';
+plt.ZLabel = '\beta_{a}';
+plt.LineWidth(:) = 2;
+plt.Title = '\beta_{a} en funció de S/C i \Psi';
+
+print -depsc2 figures/parametres/betA.eps %guardadr foto per l'informe
 % figure;
 % surf(sigma,flux,betB);
 % figure;
