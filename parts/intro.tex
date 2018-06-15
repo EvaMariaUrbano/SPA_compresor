@@ -1,3 +1,21 @@
-\section{Introducció i Objectius}
-El present treball forma part de l'assignatura de Sistemes de Propulsió d'Aeronaus. Gran part d'aquesta assignatura consisteix en l'estudi dels tipus de motors d'una aeronau i de les possibilitats d'optimització, a més de la parametrització dels motors tant en cas ideal com en cas real.\\
-Per tal de duu a terme un estudi més profund de les àrees de coneixement relacionades amb l'assignatura es proposa la realització d'aquest treball. L'objectiu es el disseny preliminar de la motorització d'un avió. Només es donen tres condicions de disseny, de manera que el sistema no queda definit, si no que s'han d'establir certs criteris per a aconseguir tots els paràmetres del motor. En les següents pàgines es discutirà quin tipus de motor pot ser adequat i el criteri de disseny a utilitzar. Seguidament s'implementarà aquest criteri per obtenir alguns dels paràmetres del avió i després es calcularà la resta tenint en compte que el motor es real. Un cop obtinguda la parametrització, s'afegirà al motor un mixer i un postcombustor. En cas que s'hagi decidit afegir un fan, es seleccionarà l'hèlix. Posteriorment, i un cop obtingut els flux màssic tant d'aire com de combustible, es calcularan les àrees del motor.
+\section{Introducció, objectius i hipòtesis}
+\label{Intro}
+El present treball forma part de l'assignatura de Sistemes de Propulsió d'Aeronaus. En la segona part de l'assignatura es profunditza en el temari relacionat amb turbomaquinaria. Per tal d'assolir els coneixements adequats, es proposa realitzar un treball amb l'objectiu de dissenyar un compressor.\\
+Les condicions i requisits pel disseny del compressor son els següents:
+\begin{itemize}
+\item Treball total del compressor: $\tau_{23}=300 kJ/kg$
+\item Consum del compressor: $G=28 kg/s$
+\item Pressió atmosfèrica: $P_{at}=1kg/cm^2$
+\item Temperatura atmosfèrica: $T_{at}=288K$
+\item Constant dels gasos ideals: $286.8 J/kgK$
+\item Exponent: $\gamma =1.4 $
+\end{itemize}
+S'han de suposar certes hipòtesis per a poder dur a terme el disseny del compressor. Aquestes hipòtesis son: 
+\begin{itemize}
+\item Màquina periòdica. El treball per esglaó es constant
+\item Grau de reacció $R=0.5$
+\item Angle de lliscament $\delta = 0$
+\item Radi mitjà constant
+\item Velocitat axial constant 
+\end{itemize}
+Amb això podem donar pas al càlcul del compressor. 
