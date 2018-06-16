@@ -1,5 +1,6 @@
 % para el caso de ocho etapas
 clc; clear all;
+addpath(genpath('./plots'))
 %% Constantes
 
 g=9.81; %m/s2
@@ -41,9 +42,11 @@ pi_et = pb_pa^2;
 et = 8;
 h = zeros(et,2); %1a columna -> seccion a. 2a columna -> seccion b.
 P = zeros(et,2); %1a columna -> seccion a. 2a columna -> seccion b.
+Pt = zeros(et,2); %1a columna -> seccion a. 2a columna -> seccion b.
 T = zeros(et,2); %1a columna -> seccion a. 2a columna -> seccion b.
+Tt = zeros(et,2); %1a columna -> seccion a. 2a columna -> seccion b.
 
-
+resultats = zeros(8,10);
 for i=1:et
     if i == 1
         % Entramos con M pero luego seguimos el loop con Va que es cte
@@ -83,13 +86,25 @@ for i=1:et
 
     % para siguiente iteracion
     P(i,1) = Pa;
+    Pt(i,1) = Pat;
     P(i,2) = Pb;
+    Pt(i,2) = Pbt;
     T(i,1) = Ta;
+    Tt(i,1) = Tat;
     T(i,2) = Tb; 
+    Tt(i,2) = Tbt;
     
     Tat = Tbt;
     Pat = Pbt*pb_pa;
 end
+resultats(:,1:2) = h;
+resultats(:,3:4) = P;
+resultats(:,5:6) = Pt;
+resultats(:,7:8) = T;
+resultats(:,9:10) = Tt;
+% matrix2latex(h, 'matrix2Latex/h.tex', 'alignment', 'c', 'format', '%.2f', 'size', 'large')
+% matrix2latex(resultats(:,3:6), 'matrix2Latex/p.tex', 'alignment', 'c', 'format', '%.2f', 'size', 'large')
+% matrix2latex(resultats(:,7:10), 'matrix2Latex/t.tex', 'alignment', 'c', 'format', '%.2f', 'size', 'large')
 
 C_h = 1/2.5;
 C_h = linspace(C_h,1.25*C_h,et);
@@ -107,6 +122,8 @@ end
 h_vect = zeros(2*et,1);
 P_vect = zeros(2*et,1);
 T_vect = zeros(2*et,1);
+Pt_vect = zeros(2*et,1);
+Tt_vect = zeros(2*et,1);
 
 for i=1:et
     h_vect(i*2-1) = h(i,1);
@@ -114,23 +131,41 @@ for i=1:et
 
     T_vect(i*2-1) = T(i,1);
     T_vect(i*2) = T(i,2);
+    Tt_vect(i*2-1) = T(i,1);
+    Tt_vect(i*2) = T(i,2);
     
     P_vect(i*2-1) = P(i,1);
     P_vect(i*2) = P(i,2);
+    Pt_vect(i*2-1) = P(i,1);
+    Pt_vect(i*2) = P(i,2);
     
 end
 L_vect = linspace(0,L,size(h_vect,1));
 Zero_line = linspace(0,0,size(h_vect,1));
 vert_line = zeros(5,et);
 
-figure
-plot(L_vect,h_vect,L_vect,-h_vect,L_vect,Zero_line)
-figure
-plot(L_vect, P_vect)
-title('P vs L')
-figure
-plot(L_vect, T_vect)
-title('T vs L')
+% figure();
+% plot(L_vect,h_vect,L_vect,-h_vect,L_vect,Zero_line)
+% savefig('./figures/hs.fig')
+% close
+% %Dibuixar bonic
+% plt = Plot('./figures/hs.fig');
+% plt.XLim(1) = plt.XLim(1);
+% plt.BoxDim = [6 4];
+% plt.XLabel = 'x';
+% plt.YLabel = 'y';
+% plt.LineWidth(:) = 2;
+% plt.Colors = {[0 0 1], [0 0 1], [0 0 0]};
+% plt.Title = 'Forma i tamany del compressor';
+% 
+% print -depsc2 figures/parametres/compressor_shape.eps %guardadr foto per l'informe
+
+% figure
+% plot(L_vect, P_vect)
+% title('P vs L')
+% figure
+% plot(L_vect, T_vect)
+% title('T vs L')
 
 
 % Calculo de Blades caso optimo
