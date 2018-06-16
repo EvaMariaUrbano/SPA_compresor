@@ -123,14 +123,6 @@ L_vect = linspace(0,L,size(h_vect,1));
 Zero_line = linspace(0,0,size(h_vect,1));
 vert_line = zeros(5,et);
 
-% aux = linspace(0,L,et);
-% for i = 1 : et
-%     vert_line(:,i) = linspace(-h(i,1),h(i,1),5);
-% end
-% for j = 1:5
-%     L_vect_u(j,:) = aux;
-% end
-
 figure
 plot(L_vect,h_vect,L_vect,-h_vect,L_vect,Zero_line)
 figure
