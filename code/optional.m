@@ -25,7 +25,7 @@ betB = 0.5393; %rad
 betM = 0.7854;
 alphaA = betB;
 
-rm  = 0.221;
+rm  = 0.2221;
 rire = 0.5890;
 Wesg = 37500;  %J/kg
 w = 1.3828e+03; %rad/s
@@ -40,6 +40,9 @@ pi_et = pb_pa^2;
 
 et = 8;
 h = zeros(et,2); %1a columna -> seccion a. 2a columna -> seccion b.
+P = zeros(et,2); %1a columna -> seccion a. 2a columna -> seccion b.
+T = zeros(et,2); %1a columna -> seccion a. 2a columna -> seccion b.
+
 
 for i=1:et
     if i == 1
@@ -79,6 +82,11 @@ for i=1:et
     h(i,2) = re - ri;
 
     % para siguiente iteracion
+    P(i,1) = Pa;
+    P(i,2) = Pb;
+    T(i,1) = Ta;
+    T(i,2) = Tb; 
+    
     Tat = Tbt;
     Pat = Pbt*pb_pa;
 end
@@ -97,9 +105,19 @@ for i=1:et
     L = L + L_stage;   
 end
 h_vect = zeros(2*et,1);
+P_vect = zeros(2*et,1);
+T_vect = zeros(2*et,1);
+
 for i=1:et
     h_vect(i*2-1) = h(i,1);
     h_vect(i*2) = h(i,2);
+
+    T_vect(i*2-1) = T(i,1);
+    T_vect(i*2) = T(i,2);
+    
+    P_vect(i*2-1) = P(i,1);
+    P_vect(i*2) = P(i,2);
+    
 end
 L_vect = linspace(0,L,size(h_vect,1));
 Zero_line = linspace(0,0,size(h_vect,1));
@@ -112,5 +130,24 @@ vert_line = zeros(5,et);
 % for j = 1:5
 %     L_vect_u(j,:) = aux;
 % end
+
+figure
 plot(L_vect,h_vect,L_vect,-h_vect,L_vect,Zero_line)
+figure
+plot(L_vect, P_vect)
+title('P vs L')
+figure
+plot(L_vect, T_vect)
+title('T vs L')
+
+
+% Calculo de Blades caso optimo
+sigma_e = 0.6;  % caso elegido
+h_r = (h(1,1)+h(1,2))/2;
+h_e = (h(1,2)+h(2,1))/2;
+N_r = fix(alabes(h_r,rm,sigma_e));
+N_e = fix(alabes(h_e,rm,sigma_e));
+
+fprintf(['-Longitud del compresor: %.2f m \n-Álabes en rotor: %d \n', ...
+'-Álabes en estator: %d \n-Álabes en primera etapa: %d \n'],L,N_r, N_e, N_r+N_e)
     

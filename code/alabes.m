@@ -1,9 +1,9 @@
-function [N] = alabes(h,r_m,sigma)
+function [N] = alabes(h,r_m,S_C)
 %Computes number of blades
-% from teacher:
+% from class:
 c_h = 1/2.5;
 C = c_h*h;
-S = (1/sigma)*C;
+S = S_C*C;
 N = 2*pi*r_m/S;
 end
 

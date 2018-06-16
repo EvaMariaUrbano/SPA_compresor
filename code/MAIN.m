@@ -94,7 +94,7 @@ TAUstage = TAUc./n;
 for ii = 1 : 4
     TAUstagePlot(:,ii) = TAUstage(ii)*ones(N,1);
 end
-%Treure gràfics per l'informe
+%Treure grï¿½fics per l'informe
     %Dibuixar normal
 figure();
 hold on
@@ -108,13 +108,13 @@ plt = Plot('./figures/TAUS.fig');
 plt.XLim(2) = plt.XLim(2) + .15;
 plt.BoxDim = [6 4];
 plt.XLabel = 'Flux, \Psi';
-plt.YLabel = 'Treball escaló, \tau';
+plt.YLabel = 'Treball escalï¿½, \tau';
 plt.LineWidth(:) = 2;
 plt.LineStyle(6:9) = {':',':',':',':'}; %:,-,--,-.
 plt.Legend = {'S/C = 0.4','S/C = 0.6','S/C = 0.8','S/C = 1','S/C = 1.2', ...
     '\tau_{N7}','\tau_{N8}','\tau_{N9}','\tau_{N10}',};
 %plt.Legend(6:9) = {'n = 7','n = 8','n = 9','n = 10'};
-plt.Title = '\tau en funció de S/C i \Psi';
+plt.Title = '\tau en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/TAUSesg.eps %guardadr foto per l'informe
 
@@ -146,7 +146,7 @@ plt.LineWidth(:) = 2;
 plt.LineStyle(6:9) = {':',':',':',':'}; %:,-,--,-.
 plt.Legend = {'S/C = 0.4','S/C = 0.6','S/C = 0.8','S/C = 1','S/C = 1.2', ...
    '\Psi_{N8}','\Psi_{N9}','\Psi_{N10}',};
-plt.Title = '\eta en funció de S/C i \Psi';
+plt.Title = '\eta en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/FLUXs.eps %guardadr foto per l'informe
 % (mirant el grafic anterior)
@@ -207,50 +207,6 @@ index_j = find(flux == round(FLUX(2),1));
 h_e(1) = h(index_i,index_j);
 r_e(1) = rm(index_i,index_j);
 N(1) = alabes(h_e(1),r_e(1),sigma_e(1));
-
-
-% per longitud. Com es una maquina periodica flux i rm son cte.
-% deltaPt = Cd(2)*0.5*rho*Wm(index_i,index_j)^2/(sigma_e(1)*cos(betM(index_i,index_j)));
-% C_h = 1/2.5;
-% C_h = linspace(C_h,1.25*C_h,et);
-% L = 0;
-% for i=1:et
-%   
-% if i == 1
-%     Pt_in = Pat;
-%     Tt_in = Tat;
-% end
-%     
-% Pt_a = Pt_in + (i-1)*deltaPt;
-% P_a = Pt_a - 0.5*rho*Va(index_i,index_j)^2;
-% Tt_a = Tt_in + (i-1)*TAUc/(et*Cp);
-% T_a = Tt_a - Va(index_i,index_j)^2/(2*Cp);
-% rho_a = P_a/(T_a*Rgas);
-% h_a = G/(rho_a*Vz(index_i,index_j)*2*pi*rm(index_i,index_j));
-% 
-% Pt_b = Pt_a + deltaPt;
-% P_b = Pt_b - 0.5*rho*Vb(index_i,index_j)^2;
-% Tt_b = Tt_in + (i)*TAUc/(et*Cp);
-% T_b = Tt_b - Vb(index_i,index_j)^2/(2*Cp);
-% rho_b = P_b/(T_b*Rgas);
-% h_b = G/(rho_b*Vz(index_i,index_j)*2*pi*rm(index_i,index_j));
-% 
-% Pt_c = Pt_b + deltaPt;
-% P_c = Pt_c - 0.5*rho*Va(index_i,index_j)^2;
-% Tt_c = Tt_in + (i+1)*TAUc/(et*Cp);
-% T_c = Tt_c - Va(index_i,index_j)^2/(2*Cp);
-% rho_c = P_c/(T_c*Rgas);
-% h_c = G/(rho_c*Vz(index_i,index_j)*2*pi*rm(index_i,index_j));
-% 
-% 
-% h_r = (h_a+h_b)/2;
-% h_e = (h_b+h_c)/2;
-% 
-% L_stage = longitud(C_h(i),h_r,h_e,et,betM(index_i,index_j));
-% L = L + L_stage;
-% end
-
-
 % ------------- 9 etapas
 sigma_e(2) = round((Cd(3)-0.021-0.018*CL_n(3)^2)*2.5/0.02,1);
 index_i = find(sigma == sigma_e(2));
@@ -283,7 +239,7 @@ plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
 plt.ZLabel = '\beta_{a}';
 plt.LineWidth(:) = 2;
-plt.Title = '\beta_{a} en funció de S/C i \Psi';
+plt.Title = '\beta_{a} en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/betA.eps %guardar foto per l'informe
 %---------------
@@ -301,7 +257,7 @@ plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
 plt.ZLabel = '\beta_{b}';
 plt.LineWidth(:) = 2;
-plt.Title = '\beta_{b} en funció de S/C i \Psi';
+plt.Title = '\beta_{b} en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/betB.eps %guardar foto per l'informe
 %---------------------------------------
@@ -318,7 +274,7 @@ plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
 plt.ZLabel = 'C_{L}';
 plt.LineWidth(:) = 2;
-plt.Title = 'C_{L} en funció de S/C i \Psi';
+plt.Title = 'C_{L} en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/CL.eps %guardar foto per l'informe
 %---------------------------------------
@@ -336,7 +292,7 @@ plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
 plt.ZLabel = 'C_{D}';
 plt.LineWidth(:) = 2;
-plt.Title = 'C_{D} en funció de S/C i \Psi';
+plt.Title = 'C_{D} en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/CD.eps %guardar foto per l'informe
 %---------------------------------------
@@ -352,9 +308,9 @@ plt = Plot('./figures/ETAesg.fig', 'true');
 plt.BoxDim = [6 4];
 plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
-plt.ZLabel = '\eta_{esglaó}';
+plt.ZLabel = '\eta_{esglaï¿½}';
 plt.LineWidth(:) = 2;
-plt.Title = '\eta_{esglaó} en funció de S/C i \Psi';
+plt.Title = '\eta_{esglaï¿½} en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/ETAesg.eps %guardar foto per l'informe
 %---------------------------------------
@@ -372,7 +328,7 @@ plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
 plt.ZLabel = 'V_{z}';
 plt.LineWidth(:) = 2;
-plt.Title = 'V_{z} en funció de S/C i \Psi';
+plt.Title = 'V_{z} en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/Vz.eps %guardar foto per l'informe
 %---------------------------------------
@@ -391,7 +347,7 @@ plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
 plt.ZLabel = 'U';
 plt.LineWidth(:) = 2;
-plt.Title = 'U en funció de S/C i \Psi';
+plt.Title = 'U en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/U.eps %guardar foto per l'informe
 %---------------------------------------
@@ -407,9 +363,9 @@ plt = Plot('./figures/TAUesg.fig', 'true');
 plt.BoxDim = [6 4];
 plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
-plt.ZLabel = '\tau_{esglaó}';
+plt.ZLabel = '\tau_{esglaï¿½}';
 plt.LineWidth(:) = 2;
-plt.Title = '\tau_{esglaó} en funció de S/C i \Psi';
+plt.Title = '\tau_{esglaï¿½} en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/TAUesg.eps %guardar foto per l'informe
 %---------------------------------------
@@ -428,7 +384,7 @@ plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
 plt.ZLabel = 'r_{i}/r_{e}';
 plt.LineWidth(:) = 2;
-plt.Title = 'r_{i}/r_{e} en funció de S/C i \Psi';
+plt.Title = 'r_{i}/r_{e} en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/rire.eps %guardar foto per l'informe
 %---------------------------------------
@@ -447,7 +403,7 @@ plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
 plt.ZLabel = 'r_{e}';
 plt.LineWidth(:) = 2;
-plt.Title = 'r_{e} en funció de S/C i \Psi';
+plt.Title = 'r_{e} en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/re.eps %guardar foto per l'informe
 %---------------------------------------
@@ -466,7 +422,7 @@ plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
 plt.ZLabel = 'r_{i}';
 plt.LineWidth(:) = 2;
-plt.Title = 'r_{i} en funció de S/C i \Psi';
+plt.Title = 'r_{i} en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/ri.eps %guardar foto per l'informe
 %---------------------------------------
@@ -486,7 +442,7 @@ plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
 plt.ZLabel = 'r_{m}';
 plt.LineWidth(:) = 2;
-plt.Title = 'r_{m} en funció de S/C i \Psi';
+plt.Title = 'r_{m} en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/rm.eps %guardar foto per l'informe
 %---------------------------------------
@@ -504,7 +460,7 @@ plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
 plt.ZLabel = 'h';
 plt.LineWidth(:) = 2;
-plt.Title = 'h en funció de S/C i \Psi';
+plt.Title = 'h en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/h.eps %guardar foto per l'informe
 %---------------------------------------
@@ -522,7 +478,7 @@ plt.XLabel = '1/Solidesa, S/C';
 plt.YLabel = 'Flux, \Psi';
 plt.ZLabel = 'N(rpm)';
 plt.LineWidth(:) = 2;
-plt.Title = 'N en funció de S/C i \Psi';
+plt.Title = 'N en funciï¿½ de S/C i \Psi';
 
 print -depsc2 figures/parametres/RPM.eps %guardar foto per l'informe
 %---------------------------------------
